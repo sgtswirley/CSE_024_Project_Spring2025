@@ -9,6 +9,7 @@ class Rectangle {
     float r;
     float g;
     float b;
+    
 
 public:
 
