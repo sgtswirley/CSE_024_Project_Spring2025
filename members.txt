@@ -5,7 +5,7 @@ CSE_024_Project_Spring2025
 
 Members
 -------
-[Member 1 Connar Rock - sgtswirley]
+[Member 1 Connor Rock - sgtswirley]
 [Member 2 Alvin Duong - Alvin-101]
 [Member 3 Diego Garcia - Diego-cloud-coder]
 [Member 4 Gabriel Sanchez - Gsanchez86]
@@ -13,8 +13,7 @@ Members
 Designated Submitter
 --------------------
 
-Connar Rock
-
+Connor Rock
 
 Github Repo Link
 --------------------
