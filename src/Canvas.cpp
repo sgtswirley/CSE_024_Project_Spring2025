@@ -1,15 +1,20 @@
 #include "Canvas.h"
+#include "Circle.h"
+#include "Point.h"
+#include "Rectangle.h"
+#include "Triangle.h"
+#include "Polygon.h"
+#include "Scribble.h"
 #include "Enums.h"
 #include <GL/freeglut.h>
 #include <bobcat_ui/canvas.h>
 
 Canvas::Canvas(int x, int y, int w, int h) : Canvas_(x, y, w, h) {
-    //
+    curr = nullptr;
 }
 
-void Canvas::addScribble(float x, float y, float r, float g, float b, int size) {
-    shapes.push_back(new Scribble(x, y, r, g, b, size));
-    shapes.push_back(PENCIL);
+void Canvas::addPoint(float x, float y, float r, float g, float b, int size) {
+    shapes.push_back(new Point(x, y, r, g, b, size));
 
 }
 
@@ -36,15 +41,6 @@ void Canvas::addPolygon(float x, float y, int sides, float length, float r, floa
     shapes.push_back(POLYGON);
 
 }
-
-void Canvas::undo(){
-    if (shapes.empty()) {
-        return;
-    }
-
-    TOOL lastShapeType = shapes.back();
-}
-
 void Canvas::clear() {
     for (unsigned int i = 0; i < shapes.size(); i++) {
         delete shapes[i];
@@ -53,8 +49,36 @@ void Canvas::clear() {
 
 }
 
+void Canvas::undo(){
+    if (shapes.size() > 0) {
+        delete shapes[shapes.size() -1];
+        shapes.pop_back();
+    }
+}
+
+
+
 void Canvas::render() {
     for (unsigned int i = 0; i < shapes.size(); i++) {
         shapes[i]->draw();
     }
+
+    if (curr){
+        curr->draw();
+    }
+}
+
+void Canvas::startScribble() {
+    curr = new Scribble();
+}
+
+void Canvas::updateScribble(float x, float y, float r, float g, float b, int size){
+    if (curr){
+        curr->addPoint(x, y, r, g, b, size);
+    }
+}
+
+void Canvas::endScribble(){
+    shapes.push_back(curr);
+    curr = nullptr;
 }
