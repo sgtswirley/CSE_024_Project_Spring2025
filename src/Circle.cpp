@@ -33,5 +33,8 @@ void Circle::draw() {
 }
 
 bool Circle::contains(float mx, float my) {
+    if (mx >= x - radius/2 && mx <= x + radius/2 && my <= y + radius/2 && my >= y - radius/2) {
+        return true;
+    }
     return false;
 }

@@ -1,6 +1,7 @@
 #include "Canvas.h"
 #include "Circle.h"
-#include <GL/freeglut.h>
+#include "Triangle.h"
+#include "Polygon.h"
 
 Canvas::Canvas(int x, int y, int w, int h) : Canvas_(x, y, w, h) {
     // 
@@ -16,6 +17,13 @@ void Canvas::addRectangle(float x, float y, float r, float g, float b) {
 
 void Canvas::addCircle(float x, float y, float r, float g, float b) {
     shapes.push_back(new Circle(x, y, r, g, b));
+}
+void Canvas::addTriangle(float x, float y, float r, float g, float b) {
+    shapes.push_back(new Triangle(x, y, r, g, b));
+}
+
+void Canvas::addPolygon(float x, float y, float r, float g, float b) {
+    shapes.push_back(new Polygon(x, y, r, g, b));
 }
 
 void Canvas::clear() {

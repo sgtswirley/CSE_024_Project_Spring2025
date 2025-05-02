@@ -9,6 +9,8 @@ void Toolbar::deselectAllTools() {
     rectangleButton->color(FL_BACKGROUND_COLOR);
     polygonButton->color(FL_BACKGROUND_COLOR);
     mouseButton->color(FL_BACKGROUND_COLOR);
+    frontButton->color(FL_BACKGROUND_COLOR);
+    backButton->color(FL_BACKGROUND_COLOR);
 }
 
 void Toolbar::visualizeSelectedTool() {
@@ -32,6 +34,12 @@ void Toolbar::visualizeSelectedTool() {
     }
     else if (tool == MOUSE) {
         mouseButton->color(FL_WHITE);
+    }
+    else if (tool == FRONT) {
+        frontButton->color(FL_WHITE);
+    }
+    else if (tool == BACK) {
+        backButton->color(FL_WHITE);
     }
 }
 
@@ -64,6 +72,12 @@ void Toolbar::onClick(bobcat::Widget* sender) {
     else if (sender == mouseButton) {
         tool = MOUSE;
     }
+    else if (sender == frontButton) {
+        tool = FRONT;
+    }
+    else if (sender == backButton) {
+        tool = BACK;
+    }
 
     if (onChangeCb) {
         onChangeCb(this);
@@ -82,14 +96,16 @@ ACTION Toolbar::getAction() const {
 }
 
 Toolbar::Toolbar(int x, int y, int w, int h) : Group(x, y, w, h) {
-    pencilButton = new Image(x, y, 50, 50, "./assets/pencil.png");
-    eraserButton = new Image(x, y + 50, 50, 50, "./assets/eraser.png");
-    circleButton = new Image(x, y + 100, 50, 50, "./assets/circle.png");
-    triangleButton = new Image(x, y + 150, 50, 50, "./assets/triangle.png");
-    rectangleButton = new Image(x, y + 200, 50, 50, "./assets/rectangle.png");
-    polygonButton = new Image(x, y + 250, 50, 50, "./assets/polygon.png");
-    clearButton = new Image(x, y + 300, 50, 50, "./assets/clear.png");
-    mouseButton = new Image(x, y + 350, 50, 50, "./assets/mouse.png");
+    pencilButton = new Image(x, y, 40, 40, "./assets/pencil.png");
+    eraserButton = new Image(x, y + 40, 40, 40, "./assets/eraser.png");
+    circleButton = new Image(x, y + 80, 40, 40, "./assets/circle.png");
+    triangleButton = new Image(x, y + 120, 40, 40, "./assets/triangle.png");
+    rectangleButton = new Image(x, y + 160, 40, 40, "./assets/rectangle.png");
+    polygonButton = new Image(x, y + 200, 40, 40, "./assets/polygon.png");
+    frontButton = new Image(x, y + 240, 40, 40, "./assets/bring-to-front.png");
+    backButton = new Image(x, y + 280, 40, 40, "./assets/send-to-back.png");
+    clearButton = new Image(x, y + 320, 40, 40, "./assets/clear.png");
+    mouseButton = new Image(x, y + 360, 40, 40, "./assets/mouse.png");
 
     tool = PENCIL;
     action = NONE;
@@ -102,6 +118,8 @@ Toolbar::Toolbar(int x, int y, int w, int h) : Group(x, y, w, h) {
     polygonButton->box(FL_BORDER_BOX);
     clearButton->box(FL_BORDER_BOX);
     mouseButton->box(FL_BORDER_BOX);
+    frontButton->box(FL_BORDER_BOX);
+    backButton->box(FL_BORDER_BOX);
 
     visualizeSelectedTool();
 
@@ -113,4 +131,6 @@ Toolbar::Toolbar(int x, int y, int w, int h) : Group(x, y, w, h) {
     ON_CLICK(polygonButton, Toolbar::onClick);
     ON_CLICK(clearButton, Toolbar::onClick);
     ON_CLICK(mouseButton, Toolbar::onClick);
+    ON_CLICK(frontButton, Toolbar::onClick);
+    ON_CLICK(backButton, Toolbar::onClick);
 }
