@@ -31,3 +31,7 @@ void Circle::draw() {
         }
     glEnd();
 }
+
+bool Circle::contains(float mx, float my) {
+    return false;
+}

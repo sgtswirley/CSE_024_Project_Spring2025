@@ -1,9 +1,7 @@
 #ifndef POINT_H
 #define POINT_H
 
-#include "Shape.h"
-
-class Point: public Shape {
+class Point {
     float x;
     float y;
     float r;
@@ -17,7 +15,7 @@ public:
     Point(float x, float y, float r, float g, float b);
     Point(float x, float y, float r, float g, float b, int size);
 
-    void draw();
+    void draw() const;
 
     float getX() const;
     float getY() const;
