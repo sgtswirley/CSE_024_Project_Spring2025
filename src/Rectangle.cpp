@@ -38,3 +38,11 @@ bool Rectangle::contains(float mx, float my) {
     }
     return false;
 }
+
+float Rectangle::getX() const {    // testing
+    return x;
+}
+
+float Rectangle::getY() const {
+    return y;
+}

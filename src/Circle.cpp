@@ -38,3 +38,16 @@ bool Circle::contains(float mx, float my) {
     }
     return false;
 }
+
+float Circle::getX() const {    // testing
+    return x;
+}
+
+float Circle::getY() const {
+    return y;
+}
+
+// void Circle::setPosition(float x, float y) {
+//     this->x = x;
+//     this->y = y;
+// }

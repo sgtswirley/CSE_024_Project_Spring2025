@@ -17,12 +17,12 @@ void Application::onCanvasMouseDown(bobcat::Widget* sender, float mx, float my) 
         canvas->addPoint(mx, my, 1.0, 1.0, 1.0, 14);
         canvas->redraw();
     }
-    else if (tool == RECTANGLE) {
-        canvas->addRectangle(mx, my, color.getR(), color.getG(), color.getB());
-        canvas->redraw();
-    }
     else if (tool == CIRCLE) { 
         canvas->addCircle(mx, my, color.getR(), color.getG(), color.getB());
+        canvas->redraw();
+    }
+    else if (tool == RECTANGLE) {
+        canvas->addRectangle(mx, my, color.getR(), color.getG(), color.getB());
         canvas->redraw();
     }
     else if (tool == TRIANGLE) {
@@ -76,10 +76,10 @@ void Application::onToolbarChange(bobcat::Widget* sender) {
 }
 
 Application::Application() {
-    window = new Window(25, 75, 400, 400, "Lecture 21");
+    window = new Window(25, 75, 430, 400, "Paint");
 
     toolbar = new Toolbar(0, 0, 80, 400);
-    canvas = new Canvas(80, 0, 320, 350);
+    canvas = new Canvas(80, 0, 350, 350);
     colorSelector = new ColorSelector(50, 350, 350, 50);
     colorSelector->box(FL_BORDER_BOX);
 

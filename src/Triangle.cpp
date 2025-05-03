@@ -38,3 +38,11 @@ bool Triangle::contains(float mx, float my) {
     }
     return false;
 }
+
+float Triangle::getX() const {    // testing
+    return x;
+}
+
+float Triangle::getY() const {
+    return y;
+}

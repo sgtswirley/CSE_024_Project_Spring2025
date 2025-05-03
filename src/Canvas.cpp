@@ -10,18 +10,16 @@ Canvas::Canvas(int x, int y, int w, int h) : Canvas_(x, y, w, h) {
 void Canvas::addPoint(float x, float y, float r, float g, float b, int size) {
     points.push_back(new Point(x, y, r, g, b, size));
 }
+void Canvas::addCircle(float x, float y, float r, float g, float b) {
+    shapes.push_back(new Circle(x, y, r, g, b));
+}
 
 void Canvas::addRectangle(float x, float y, float r, float g, float b) {
     shapes.push_back(new Rectangle(x, y, r, g, b));
 }
-
-void Canvas::addCircle(float x, float y, float r, float g, float b) {
-    shapes.push_back(new Circle(x, y, r, g, b));
-}
 void Canvas::addTriangle(float x, float y, float r, float g, float b) {
     shapes.push_back(new Triangle(x, y, r, g, b));
 }
-
 void Canvas::addPolygon(float x, float y, float r, float g, float b) {
     shapes.push_back(new Polygon(x, y, r, g, b));
 }
@@ -58,6 +56,11 @@ Shape* Canvas::getSelectedShape(float mx, float my) {
         if (shapes[i]->contains(mx, my)) {
             std::cout << "Clicked on shape[" << i << "]" << std::endl;
             selectedShape = shapes[i];
+
+            float x = selectedShape->getX();
+            float y = selectedShape->getY();
+
+            std::cout << "Shape cord: x=" << x  << " : y=" << y << "]" << std::endl;
             break;
         }
     }

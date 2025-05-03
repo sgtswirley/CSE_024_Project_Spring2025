@@ -45,3 +45,11 @@ bool Polygon::contains(float mx, float my) {
     return false;
 
 }
+
+float Polygon::getX() const {    // testing
+    return x;
+}
+
+float Polygon::getY() const {
+    return y;
+}
