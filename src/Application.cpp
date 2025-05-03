@@ -79,8 +79,8 @@ Application::Application() {
     window = new Window(25, 75, 430, 400, "Paint");
 
     toolbar = new Toolbar(0, 0, 80, 400);
-    canvas = new Canvas(80, 0, 350, 350);
-    colorSelector = new ColorSelector(50, 350, 350, 50);
+    canvas = new Canvas(80, 0, 350, 300);
+    colorSelector = new ColorSelector(80, 350, 350, 100);
     colorSelector->box(FL_BORDER_BOX);
 
     window->add(toolbar);

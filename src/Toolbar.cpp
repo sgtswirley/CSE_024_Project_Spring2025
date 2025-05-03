@@ -114,18 +114,19 @@ ACTION Toolbar::getAction() const {
 }
 
 Toolbar::Toolbar(int x, int y, int w, int h) : Group(x, y, w, h) {
-    pencilButton = new Image(x, y, 40, 40, "./assets/pencil.png");
+    pencilButton = new Image(x, y + 0, 40, 40, "./assets/pencil.png");
     eraserButton = new Image(x, y + 40, 40, 40, "./assets/eraser.png");
     circleButton = new Image(x, y + 80, 40, 40, "./assets/circle.png");
     triangleButton = new Image(x, y + 120, 40, 40, "./assets/triangle.png");
     rectangleButton = new Image(x, y + 160, 40, 40, "./assets/rectangle.png");
-    clearButton = new Image(x, y + 200, 40, 40, "./assets/clear.png");
-    mouseButton = new Image(x, y + 240, 40, 40, "./assets/mouse.png");
     polygonButton = new Image(x, y + 200, 40, 40, "./assets/polygon.png");
-    frontButton = new Image(x + 40, y, 40, 40, "./assets/bring-to-front.png");
-    backButton = new Image(x + 40, y + 40, 40, 40, "./assets/send-to-back.png");
-    plusButton = new Image(x + 40, y + 80, 40, 40, "./assets/plus.png");
-    backButton = new Image(x + 40, y + 120, 40, 40, "./assets/minus.png");
+
+    mouseButton = new Image(x + 40, y + 0, 40, 40, "./assets/mouse.png");
+    frontButton = new Image(x + 40, y + 40, 40, 40, "./assets/bring-to-front.png");
+    backButton = new Image(x + 40, y + 80, 40, 40, "./assets/send-to-back.png");
+    plusButton = new Image(x + 40, y + 120, 40, 40, "./assets/plus.png");
+    backButton = new Image(x + 40, y + 160, 40, 40, "./assets/minus.png");
+    clearButton = new Image(x + 40, y + 200, 40, 40, "./assets/clear.png");
 
 
     tool = PENCIL;

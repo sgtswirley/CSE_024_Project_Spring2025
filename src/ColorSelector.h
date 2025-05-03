@@ -2,6 +2,7 @@
 #define COLOR_SELECTOR_H
 
 #include <bobcat_ui/all.h>
+#include <bobcat_ui/textbox.h>
 #include "Color.h"
 #include "Enums.h"
 
@@ -13,6 +14,9 @@ class ColorSelector : public bobcat::Group {
     bobcat::Button* blueButton;
     bobcat::Button* indigoButton;
     bobcat::Button* violetButton;
+    bobcat::IntInput* redInput; // testing
+    bobcat::IntInput* greenInput; // testing
+    bobcat::IntInput* blueInput; // testing
 
     COLOR color;
     void deselectAllColors();

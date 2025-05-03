@@ -38,7 +38,6 @@ void ColorSelector::visualizeSelectedColor() {
 void ColorSelector::onClick(bobcat::Widget* sender) {
     deselectAllColors();
 
-
     if (sender == redButton) {
         color = RED;
     }
@@ -93,13 +92,19 @@ Color ColorSelector::getColor() const {
 }
 
 ColorSelector::ColorSelector(int x, int y, int w, int h) : Group(x, y, w, h) {
-    redButton = new Button(x, y, 50, 50, "");
+    redButton = new Button(x + 0, y, 50, 50, "");
     orangeButton = new Button(x + 50, y, 50, 50, "");
     yellowButton = new Button(x + 100, y, 50, 50, "");
     greenButton = new Button(x + 150, y, 50, 50, "");
     blueButton = new Button(x + 200, y, 50, 50, "");
     indigoButton = new Button(x + 250, y, 50, 50, "");
     violetButton = new Button(x + 300, y, 50, 50, "");
+
+
+    redInput = new IntInput(x + 0, y -30, 100, 25, "Red" );
+    greenInput = new IntInput(x + 100, y - 30, 100, 25, "Green" );
+    blueInput = new IntInput(x + 200, y - 30, 100, 25, "Blue" );
+
 
     color = RED;
 
