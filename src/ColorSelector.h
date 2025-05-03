@@ -2,7 +2,6 @@
 #define COLOR_SELECTOR_H
 
 #include <bobcat_ui/all.h>
-#include <bobcat_ui/bobcat_ui.h>
 #include "Color.h"
 #include "Enums.h"
 
