@@ -1,5 +1,3 @@
-// #ifndef TOOLBAR_H
-// #define TOOLBAR_H
 #ifndef TRIANGLE_H
 #define TRIANGLE_H
 

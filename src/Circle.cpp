@@ -12,13 +12,10 @@ Circle::Circle() {
     b = 0.0;
 }
 
-Circle::Circle(float x, float y, float radius) {
+Circle::Circle(float x, float y, float r, float g, float b) {
     this->x = x; 
     this->y = y; 
-    this->radius = radius;
-}
-
-Circle::Circle(float x, float y, float radius, float r, float g, float b) {
+    radius = 0.2;
     this->r = r; 
     this->g = g; 
     this->b = b; 

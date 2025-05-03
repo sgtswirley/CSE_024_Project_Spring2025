@@ -11,7 +11,6 @@ class Toolbar : public bobcat::Group {
     bobcat::Image* pencilButton;
     bobcat::Image* eraserButton;
     bobcat::Image* circleButton;
-
     bobcat::Image* triangleButton;
     bobcat::Image* rectangleButton;
     bobcat::Image* polygonButton;
@@ -19,6 +18,8 @@ class Toolbar : public bobcat::Group {
     bobcat::Image* mouseButton;
     bobcat::Image* frontButton;
     bobcat::Image* backButton;
+    bobcat::Image* plusButton;
+    bobcat::Image* minusButton;
 
     TOOL tool;
     ACTION action;

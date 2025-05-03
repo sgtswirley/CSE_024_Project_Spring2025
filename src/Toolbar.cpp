@@ -1,4 +1,5 @@
 #include "Toolbar.h"
+#include <FL/Enumerations.H>
 using namespace bobcat;
 
 void Toolbar::deselectAllTools() {
@@ -11,6 +12,8 @@ void Toolbar::deselectAllTools() {
     mouseButton->color(FL_BACKGROUND_COLOR);
     frontButton->color(FL_BACKGROUND_COLOR);
     backButton->color(FL_BACKGROUND_COLOR);
+    plusButton->color(FL_BACKGROUND_COLOR);
+    // minusButton->color(FL_BACKGROUND_COLOR);
 
 }
 
@@ -41,6 +44,12 @@ void Toolbar::visualizeSelectedTool() {
     }
     else if (tool == BACK) {
         backButton->color(FL_WHITE);
+    }
+    else if (tool == PLUS) {
+        plusButton->color(FL_WHITE);
+    }
+    else if (tool == MINUS) {
+        minusButton->color(FL_WHITE);
     }
 
 }
@@ -80,6 +89,12 @@ void Toolbar::onClick(bobcat::Widget* sender) {
     else if (sender == backButton) {
         tool = BACK;
     }
+    else if (sender == plusButton) {
+        tool = PLUS;
+    }
+    else if (sender == minusButton) {
+        tool = MINUS;
+    }
 
     if (onChangeCb) {
         onChangeCb(this);
@@ -104,11 +119,13 @@ Toolbar::Toolbar(int x, int y, int w, int h) : Group(x, y, w, h) {
     circleButton = new Image(x, y + 80, 40, 40, "./assets/circle.png");
     triangleButton = new Image(x, y + 120, 40, 40, "./assets/triangle.png");
     rectangleButton = new Image(x, y + 160, 40, 40, "./assets/rectangle.png");
+    clearButton = new Image(x, y + 200, 40, 40, "./assets/clear.png");
+    mouseButton = new Image(x, y + 240, 40, 40, "./assets/mouse.png");
     polygonButton = new Image(x, y + 200, 40, 40, "./assets/polygon.png");
-    frontButton = new Image(x, y + 240, 40, 40, "./assets/bring-to-front.png");
-    backButton = new Image(x, y + 280, 40, 40, "./assets/send-to-back.png");
-    clearButton = new Image(x, y + 320, 40, 40, "./assets/clear.png");
-    mouseButton = new Image(x, y + 360, 40, 40, "./assets/mouse.png");
+    frontButton = new Image(x + 40, y, 40, 40, "./assets/bring-to-front.png");
+    backButton = new Image(x + 40, y + 40, 40, 40, "./assets/send-to-back.png");
+    plusButton = new Image(x + 40, y + 80, 40, 40, "./assets/plus.png");
+    backButton = new Image(x + 40, y + 120, 40, 40, "./assets/minus.png");
 
 
     tool = PENCIL;
@@ -124,8 +141,8 @@ Toolbar::Toolbar(int x, int y, int w, int h) : Group(x, y, w, h) {
     mouseButton->box(FL_BORDER_BOX);
     frontButton->box(FL_BORDER_BOX);
     backButton->box(FL_BORDER_BOX);
-
-    undoButton->box(FL_BORDER_BOX);
+    plusButton->box(FL_BORDER_BOX);
+    // minusButton->box(FL_BORDER_BOX);     // Causing segmentation fault
 
 
     visualizeSelectedTool();
@@ -140,5 +157,6 @@ Toolbar::Toolbar(int x, int y, int w, int h) : Group(x, y, w, h) {
     ON_CLICK(mouseButton, Toolbar::onClick);
     ON_CLICK(frontButton, Toolbar::onClick);
     ON_CLICK(backButton, Toolbar::onClick);
-
+    ON_CLICK(plusButton, Toolbar::onClick);
+    // ON_CLICK(minusButton, Toolbar::onClick);     // Causing segmentation fault
 }
