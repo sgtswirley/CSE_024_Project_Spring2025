@@ -125,7 +125,7 @@ Toolbar::Toolbar(int x, int y, int w, int h) : Group(x, y, w, h) {
     frontButton->box(FL_BORDER_BOX);
     backButton->box(FL_BORDER_BOX);
 
-    undoButton->box(FL_BORDER_BOX);
+    // undoButton->box(FL_BORDER_BOX);
 
 
     visualizeSelectedTool();
