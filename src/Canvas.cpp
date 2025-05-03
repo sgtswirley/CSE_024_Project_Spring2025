@@ -72,20 +72,20 @@ Shape* Canvas::getSelectedShape(float mx, float my) {
 
 }
 
-Shape* Canvas::moveSelectedShape(float mx, float my) {
-    Shape* movedShape = nullptr;
+// Shape* Canvas::moveSelectedShape(float mx, float my) {
+//     Shape* movedShape = nullptr;
 
-    for (unsigned int i = 0; i < shapes.size(); i++) {
-        if (shapes[i]->contains(mx, my)) {
-            movedShape = shapes[i];
-            shapes.end();
-        }
-    }
+//     for (unsigned int i = 0; i < shapes.size(); i++) {
+//         if (shapes[i]->contains(mx, my)) {
+//             movedShape = shapes[i];
+//             shapes.end();
+//         }
+//     }
 
-    if (movedShape == nullptr) {
-        std::cout << "No selected shape" << std::endl;
-    }
+//     if (movedShape == nullptr) {
+//         std::cout << "No selected shape" << std::endl;
+//     }
 
-    return movedShape;
+//     return movedShape;
 
-}
+// }

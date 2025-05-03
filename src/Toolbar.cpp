@@ -1,4 +1,5 @@
 #include "Toolbar.h"
+#include <FL/Enumerations.H>
 using namespace bobcat;
 
 void Toolbar::deselectAllTools() {
@@ -11,6 +12,8 @@ void Toolbar::deselectAllTools() {
     mouseButton->color(FL_BACKGROUND_COLOR);
     frontButton->color(FL_BACKGROUND_COLOR);
     backButton->color(FL_BACKGROUND_COLOR);
+    sizeIncreaseButton->color(FL_BACKGROUND_COLOR);
+    sizeDecreaseButton->color(FL_BACKGROUND_COLOR);
 
 }
 
@@ -80,6 +83,12 @@ void Toolbar::onClick(bobcat::Widget* sender) {
     else if (sender == backButton) {
         tool = BACK;
     }
+    else if(sender == sizeIncreaseButton){
+        action = INCREASE;
+    }
+    else if(sender == sizeDecreaseButton){
+        action = DECREASE;
+    }
 
     if (onChangeCb) {
         onChangeCb(this);
@@ -105,10 +114,12 @@ Toolbar::Toolbar(int x, int y, int w, int h) : Group(x, y, w, h) {
     triangleButton = new Image(x + 20, y + 80, 20, 20, "./assets/triangle.png");
     rectangleButton = new Image(x, y + 100, 20, 20, "./assets/rectangle.png");
     polygonButton = new Image(x + 20, y + 100, 20, 20, "./assets/polygon.png");
-    frontButton = new Image(x, y + 240, 40, 40, "./assets/bring-to-front.png");
-    backButton = new Image(x, y + 280, 40, 40, "./assets/send-to-back.png");
-    clearButton = new Image(x, y + 320, 40, 40, "./assets/clear.png");
-    mouseButton = new Image(x, y + 360, 40, 40, "./assets/mouse.png");
+    frontButton = new Image(x, y + 120, 40, 40, "./assets/bring-to-front.png");
+    backButton = new Image(x, y + 160, 40, 40, "./assets/send-to-back.png");
+    clearButton = new Image(x, y + 200, 40, 40, "./assets/clear.png");
+    mouseButton = new Image(x, y + 240, 40, 40, "./assets/mouse.png");
+    sizeIncreaseButton = new Image(x, y + 280, 40, 40, "./assets/plus.png");
+    sizeDecreaseButton = new Image(x, y + 320, 40, 40, "./assets/minus.png");
 
 
     tool = PENCIL;
@@ -124,6 +135,8 @@ Toolbar::Toolbar(int x, int y, int w, int h) : Group(x, y, w, h) {
     mouseButton->box(FL_BORDER_BOX);
     frontButton->box(FL_BORDER_BOX);
     backButton->box(FL_BORDER_BOX);
+    sizeIncreaseButton->box(FL_BORDER_BOX);
+    sizeDecreaseButton->box(FL_BORDER_BOX);
 
     // undoButton->box(FL_BORDER_BOX);
 
@@ -140,5 +153,7 @@ Toolbar::Toolbar(int x, int y, int w, int h) : Group(x, y, w, h) {
     ON_CLICK(mouseButton, Toolbar::onClick);
     ON_CLICK(frontButton, Toolbar::onClick);
     ON_CLICK(backButton, Toolbar::onClick);
+    ON_CLICK(sizeIncreaseButton, Toolbar::onClick);
+    ON_CLICK(sizeDecreaseButton, Toolbar::onClick);
 
 }

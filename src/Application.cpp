@@ -54,8 +54,7 @@ void Application::onCanvasMouseDown(bobcat::Widget* sender, float mx, float my) 
         selectedShape = canvas->getSelectedShape(mx, my);
     }
     else if (tool == FRONT) {
-        Shape* movedShape = canvas->moveSelectedShape(mx, my);
-        canvas->redraw();
+        selectedShape = canvas->getSelectedShape(mx, my);
     }
     else if (tool == BACK) {
         cout << "Do back";
@@ -98,6 +97,12 @@ void Application::onColorSelectorChange(bobcat::Widget* Sender) {
     }
 }
 
+// void Application::onSendShapeBack(bobcat::Widget* Sender) {
+//     if (selectedShape) {
+//         for shapes.end();
+//         canvas->redraw();
+//     }
+// }
 Application::Application() {
     window = new Window(25, 75, 400, 400, "Paint Project");
 
