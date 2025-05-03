@@ -4,6 +4,7 @@
 #include <GL/freeglut.h>
 #include <GL/gl.h>
 
+
 // Abstract Data Type
 class Shape{
 
@@ -20,6 +21,7 @@ public:
     // function implemented
 
     // Any ADT must have a virtual destructor
+
     virtual ~Shape(){}
 };
 

@@ -1,21 +1,26 @@
 #include "Polygon.h"
+
 #include <cmath>
 
 Polygon::Polygon() {
     x = 0.0;
     y = 0.0;
     sides = 5;
+
     length = 0.25;
+
     r = 0.0;
     g = 0.0;
     b = 0.0;
 }
+
 
 Polygon::Polygon(float x, float y, float r, float g, float b){
     this->x = x;
     this->y = y;
     sides = 5;
     length = 0.25;
+
     this->r = r;
     this->g = g;
     this->b = b;
@@ -30,6 +35,7 @@ void Polygon::draw() {
             glVertex2f(x + length * cos(theta), y + length * sin(theta));
         }
     glEnd();
+
 }
 
 bool Polygon::contains(float mx, float my) {
@@ -37,4 +43,5 @@ bool Polygon::contains(float mx, float my) {
         return true;
     }
     return false;
+
 }

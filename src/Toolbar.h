@@ -2,12 +2,16 @@
 #define TOOLBAR_H
 
 #include <bobcat_ui/all.h>
+
+#include <bobcat_ui/bobcat_ui.h>
+
 #include "Enums.h"
 
 class Toolbar : public bobcat::Group {
     bobcat::Image* pencilButton;
     bobcat::Image* eraserButton;
     bobcat::Image* circleButton;
+
     bobcat::Image* triangleButton;
     bobcat::Image* rectangleButton;
     bobcat::Image* polygonButton;
@@ -18,6 +22,7 @@ class Toolbar : public bobcat::Group {
 
     TOOL tool;
     ACTION action;
+
     void deselectAllTools();
     void visualizeSelectedTool();
     void onClick(bobcat::Widget* sender);

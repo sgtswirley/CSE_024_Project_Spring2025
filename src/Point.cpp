@@ -1,6 +1,7 @@
 #include "Point.h"
 #include <GL/freeglut.h>
 
+
 Point::Point() {
     x = 0.0;
     y = 0.0;
@@ -8,6 +9,7 @@ Point::Point() {
     g = 0.0;
     b = 0.0;
     size = 7;
+
 }
 
 Point::Point(float x, float y) : Point() {
@@ -15,7 +17,9 @@ Point::Point(float x, float y) : Point() {
     this->y = y;
 }
 
+
 Point::Point(float x, float y, float r, float g, float b) : Point(x, y) {
+
     this->r = r;
     this->g = g;
     this->b = b;
@@ -26,6 +30,7 @@ Point::Point(float x, float y, float r, float g, float b, int size) : Point(x, y
 }
 
 void Point::draw() const {
+
     glColor3f(r, g, b);
     glPointSize(size);
 
@@ -37,6 +42,7 @@ void Point::draw() const {
 float Point::getX() const {
     return x;
 }
+
 
 float Point::getY() const {
     return y;
@@ -57,3 +63,4 @@ float Point::getB() const {
 int Point::getSize() const {
     return size;
 }
+

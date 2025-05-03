@@ -23,6 +23,7 @@ public:
     ColorSelector(int x, int y, int w, int h);
 
     Color getColor() const;
+
 };
 
 #endif

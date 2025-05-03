@@ -38,6 +38,7 @@ void ColorSelector::visualizeSelectedColor() {
 void ColorSelector::onClick(bobcat::Widget* sender) {
     deselectAllColors();
 
+
     if (sender == redButton) {
         color = RED;
     }
@@ -126,4 +127,5 @@ ColorSelector::ColorSelector(int x, int y, int w, int h) : Group(x, y, w, h) {
     ON_CLICK(blueButton, ColorSelector::onClick);
     ON_CLICK(indigoButton, ColorSelector::onClick);
     ON_CLICK(violetButton, ColorSelector::onClick);
+
 }
