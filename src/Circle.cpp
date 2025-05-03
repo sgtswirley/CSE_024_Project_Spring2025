@@ -12,17 +12,18 @@ Circle::Circle() {
     b = 0.0;
 }
 
-Circle::Circle(float x, float y, float radius) {
+
+Circle::Circle(float x, float y, float r, float g, float b) {
     this->x = x; 
     this->y = y; 
-    this->radius = radius;
-}
-
-Circle::Circle(float x, float y, float radius, float r, float g, float b) {
+    radius = 0.2;
     this->r = r; 
     this->g = g; 
     this->b = b; 
 }
+
+
+
 
 void Circle::draw() {
     glColor3f(r, g, b);
@@ -33,4 +34,17 @@ void Circle::draw() {
             glVertex2d(x + cos(theta) * radius, y + sin(theta) * radius);
         }
     glEnd();
+}
+
+bool Circle::contains(float mx, float my) {
+    if (mx >= x - radius/2 && mx <= x + radius/2 && my <= y + radius/2 && my >= y - radius/2) {
+        return true;
+    }
+    return false;
+}
+
+void Circle::setColor(float r, float g, float b) {
+    this->r = r;
+    this->g = g;
+    this->b = b;
 }

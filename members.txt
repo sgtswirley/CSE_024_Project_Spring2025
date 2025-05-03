@@ -1,4 +1,21 @@
+Group Name
+----------
+
+CSE_024_Project_Spring2025
+
+Members
+-------
+[Member 1 Connor Rock - sgtswirley]
+[Member 2 Alvin Duong - Alvin-101]
+[Member 3 Diego Garcia - Diego-cloud-coder]
+[Member 4 Gabriel Sanchez - Gsanchez86]
+
+Designated Submitter
+--------------------
+
 Connor Rock
-ALvin Duong
-Diego Garcia
-Gabriel Sanchez
+
+Github Repo Link
+--------------------
+
+https://github.com/sgtswirley/CSE_024_Project_Spring2025.git

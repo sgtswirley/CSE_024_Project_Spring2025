@@ -12,7 +12,7 @@ public:
 
     float getR() const;
     float getG() const;
-    float getB() const;    
+    float getB() const;
 };
 
 #endif

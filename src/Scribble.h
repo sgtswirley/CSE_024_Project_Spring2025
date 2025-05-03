@@ -1,20 +1,20 @@
-#ifndef SCRIBBLE_H
-#define SCRIBBLE_H
+// #ifndef SCRIBBLE_H
+// #define SCRIBBLE_H
 
-#include "Shape.h"
-#include "Point.h"
-#include <vector>
+// #include "Shape.h"
+// #include "Point.h"
+// #include <vector>
 
-class Scribble {
-    std::vector<Point*> points;
+// class Scribble {
+//     std::vector<Point*> points;
 
-public:
+// public:
 
-    void addPoint(float x, float y, float r, float g, float b, int size);
+//     void addPoint(float x, float y, float r, float g, float b, int size);
 
-    void draw();
+//     void draw();
 
-    ~Scribble();
-};
+//     ~Scribble();
+// };
 
-#endif
+// #endif

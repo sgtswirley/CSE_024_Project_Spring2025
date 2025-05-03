@@ -11,11 +11,12 @@ class Application : public bobcat::Application_ {
     Toolbar* toolbar;
     Canvas* canvas;
     ColorSelector* colorSelector;
+    Shape* selectedShape;
 
     void onCanvasMouseDown(bobcat::Widget* sender, float mx, float my);
     void onCanvasDrag(bobcat::Widget* sender, float mx, float my);
     void onToolbarChange(bobcat::Widget* sender);
-    void onCanvasMouseUp(bobcat::Widget* sender, float mx, float my);
+    void onColorSelectorChange(bobcat::Widget* sender);
 
 public:
     Application();

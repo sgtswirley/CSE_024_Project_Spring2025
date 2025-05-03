@@ -1,7 +1,11 @@
 #ifndef POLYGON_H
 #define POLYGON_H
 
-class Polygon {
+
+#include "Shape.h"
+
+class Polygon : public Shape{
+
     float x;
     float y;
     int sides;
@@ -12,9 +16,12 @@ class Polygon {
 
 public:
     Polygon();
-    Polygon(float x, float y, int sides, float length, float r, float g, float b);
 
+    Polygon(float x, float y, float r, float g, float b);
     void draw();
+    bool contains(float mx, float my);
+    void setColor(float r, float g, float b);
+
 
 };
 
