@@ -12,8 +12,8 @@ Application::Application() {
     lastMouseY = 0;
 
     toolbar       = new Toolbar(0,   0,   50, 400);
-    canvas        = new Canvas(50,  0,  350, 350);
-    colorSelector = new ColorSelector(50, 350, 350, 50);
+    canvas        = new Canvas(50,  0,  350, 300);          // changed height 350 -> 300
+    colorSelector = new ColorSelector(50, 300, 350, 100);   // changed y 350 -> 300 ; height 50 -> 100
     colorSelector->box(FL_BORDER_BOX);
 
     window->add(toolbar);

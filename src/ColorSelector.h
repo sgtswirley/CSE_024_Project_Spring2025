@@ -14,6 +14,13 @@ class ColorSelector : public bobcat::Group {
     bobcat::Button* indigoButton;
     bobcat::Button* violetButton;
 
+    bobcat::Button* inputButton;
+
+    bobcat::IntInput* redInput;     // added
+    bobcat::IntInput* greenInput;   // added
+    bobcat::IntInput* blueInput;    // added
+
+
     COLOR color;
     void deselectAllColors();
     void visualizeSelectedColor();

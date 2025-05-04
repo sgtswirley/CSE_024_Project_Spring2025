@@ -1,4 +1,6 @@
 #include "ColorSelector.h"
+#include <FL/Enumerations.H>
+#include <bobcat_ui/button.h>
 using namespace bobcat;
 
 void ColorSelector::deselectAllColors() {
@@ -9,6 +11,7 @@ void ColorSelector::deselectAllColors() {
     blueButton->label("");
     indigoButton->label("");
     violetButton->label("");
+
 }
 
 void ColorSelector::visualizeSelectedColor() {
@@ -60,6 +63,10 @@ void ColorSelector::onClick(bobcat::Widget* sender) {
     else if (sender == violetButton) {
         color = VIOLET;
     }
+    else if (sender == inputButton) {       // added
+        color = CHANGE;
+    }
+
 
     if (onChangeCb) {
         onChangeCb(this);
@@ -91,19 +98,54 @@ Color ColorSelector::getColor() const {
     else if (color == VIOLET) {
         return Color(148/255.0, 0/255.0, 211/255.0);
     }
+    else if (color == CHANGE) {     // ADDED v
+        int red = redInput->value();
+        int green = greenInput->value();
+        int blue = blueInput->value();
+
+        if (red <= 0) {
+            redInput->value(0);
+            red = 0;
+        } else if (red >= 255) {
+            redInput->value(255);
+            red = 255;
+        }
+        if (green <= 0) {
+            greenInput->value(0);
+            green = 0;
+        } else if (green >= 255) {
+            greenInput->value(255);
+            green = 255;
+        }
+        if (blue <= 0) {
+            blueInput->value(0);
+            blue = 0;
+        } else if (blue >= 255) {
+            blueInput->value(255);
+            blue = 255;
+        }
+        inputButton->color(fl_rgb_color(red, green, blue));  
+        return Color(red/255.0 ,green/255.0, blue/255.0);
+    }                                 // added ^
     else {
         return Color();
     }
 }
 
 ColorSelector::ColorSelector(int x, int y, int w, int h) : Group(x, y, w, h) {
-    redButton = new Button(x, y, 50, 50, "");
-    orangeButton = new Button(x + 50, y, 50, 50, "");
-    yellowButton = new Button(x + 100, y, 50, 50, "");
-    greenButton = new Button(x + 150, y, 50, 50, "");
-    blueButton = new Button(x + 200, y, 50, 50, "");
-    indigoButton = new Button(x + 250, y, 50, 50, "");
-    violetButton = new Button(x + 300, y, 50, 50, "");
+    redButton = new Button(x + 0, y + 50, 50, 50, "");                 // moved all buttons down by  50
+    orangeButton = new Button(x + 50, y + 50, 50, 50, "");
+    yellowButton = new Button(x + 100, y + 50, 50, 50, "");
+    greenButton = new Button(x + 150, y + 50, 50, 50, "");
+    blueButton = new Button(x + 200, y + 50, 50, 50, "");
+    indigoButton = new Button(x + 250, y + 50, 50, 50, "");
+    violetButton = new Button(x + 300, y + 50, 50, 50, "");
+
+
+    inputButton = new Button (x + 300, y + 0, 50, 50);              // added
+    redInput = new IntInput(x + 0, y + 25, 100, 25, "RED");         // added
+    greenInput = new IntInput(x + 100, y + 25, 100, 25, "GREEN");   // added
+    blueInput = new IntInput(x + 200, y + 25, 100, 25, "BLUE");     // added
 
     color = RED;
 
@@ -122,6 +164,13 @@ ColorSelector::ColorSelector(int x, int y, int w, int h) : Group(x, y, w, h) {
     violetButton->color(fl_rgb_color(148, 0, 211));
     violetButton->labelcolor(FL_WHITE);
 
+
+    inputButton->color(fl_rgb_color(255, 255, 255));    // added  v
+    inputButton->label("COLOR\nSELECT");   
+    redInput->value(255);
+    greenInput->value(255);
+    blueInput->value(255);                              // added ^
+
     visualizeSelectedColor();
 
     ON_CLICK(redButton, ColorSelector::onClick);
@@ -131,5 +180,6 @@ ColorSelector::ColorSelector(int x, int y, int w, int h) : Group(x, y, w, h) {
     ON_CLICK(blueButton, ColorSelector::onClick);
     ON_CLICK(indigoButton, ColorSelector::onClick);
     ON_CLICK(violetButton, ColorSelector::onClick);
+    ON_CLICK(inputButton, ColorSelector::onClick);  // added
 
 }
