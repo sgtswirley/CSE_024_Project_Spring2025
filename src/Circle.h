@@ -3,20 +3,22 @@
 
 #include "Shape.h"
 
-class Circle : public Shape{
-    float x;
-    float y;
+class Circle : public Shape {
+private:
+    float x, y;
     float radius;
-    float r;
-    float g;
-    float b;
+    float r, g, b;
 
 public:
     Circle();
-    Circle(float x, float y, float radius);
-    Circle(float x, float y, float radius, float r, float g, float b);
+    Circle(float x, float y, float r, float g, float b);
 
-    void draw();
+    void draw() override;
+    bool contains(float mx, float my) override;
+    void setColor(float r, float g, float b) override;
+    void resize(float scaleX, float scaleY) override;
+    void move(float dx, float dy) override;
+    Shape* clone() const override;
 };
 
 #endif

@@ -1,83 +1,18 @@
 #include "Application.h"
 #include "Enums.h"
-#include <FL/Enumerations.H>
-#include <bobcat_ui/bobcat_ui.h>
-#include <bobcat_ui/canvas.h>
+#include <iostream>
 
 using namespace bobcat;
-using namespace std;
 
-void Application::onCanvasMouseDown(bobcat::Widget* sender, float mx, float my) {
-    TOOL tool = toolbar->getTool();
-    Color color = colorSelector->getColor();
-
-    if (tool == PENCIL) {
-        canvas->startScribble();
-        canvas->updateScribble(mx, my, color.getR(), color.getG(), color.getB(), 7);
-        canvas->redraw();
-
-    }
-    else if (tool == ERASER) {
-        canvas->startScribble();
-        canvas->updateScribble(mx, my, 1.0, 1.0, 1.0, 14);
-        canvas->redraw();
-    }
-    else if (tool == RECTANGLE) {
-        canvas->addRectangle(mx, my, color.getR(), color.getG(), color.getB());
-        canvas->redraw();
-    }
-
-    else if (tool == CIRCLE) {
-        canvas->addCircle(mx, my, color.getR(), color.getG(), color.getB());
-        canvas.redraw();
-    }
-    else if (tool == TRIANGLE) {
-        canvas->addTriangle(mx, my, color.getR(), color.getG(), color.getB());
-        canvas.redraw();
-    }
-    else if (tool == POLYGON) {
-        canvas->addPolygon(mx, my, color.getR(), color.getG(), color.getB());
-        canvas.redraw();
-    }
-}
-
-void Application::onCanvasMouseUp(bobcat::Widget *sender, float mx, float my) {
-    canvas->endScribble();
-}
-
-void Application::onCanvasDrag(bobcat::Widget* sender, float mx, float my) {
-    TOOL tool = toolbar->getTool();
-    Color color = colorSelector->getColor();
-
-    if (tool == PENCIL) {
-        canvas->updateScribble(mx, my, color.getR(), color.getG(), color.getB(), 7);
-        canvas->redraw();
-
-    }
-    else if (tool == ERASER) {
-        canvas->updateScribble(mx, my, 1.0, 1.0, 1.0, 14);
-        canvas->redraw();
-
-    }
-}
-
-void Application::onToolbarChange(bobcat::Widget* sender) {
-    ACTION action = toolbar->getAction();
-
-    if (action == CLEAR) {
-        canvas->clear();
-        canvas->redraw();
-    }
-    else if (action == UNDO) {
-        canvas->undo();
-        canvas->redraw();
-    }
-}
 Application::Application() {
-    window = new Window(100, 100, 400, 400, "Paint Application");
+    window = new Window(25, 75, 400, 400, "Paint App");
 
-    toolbar = new Toolbar(0, 0, 50, 350);
-    canvas = new Canvas(50, 0, 350, 350);
+    selectedShape = nullptr;
+    lastMouseX = 0;
+    lastMouseY = 0;
+
+    toolbar       = new Toolbar(0,   0,   50, 400);
+    canvas        = new Canvas(50,  0,  350, 350);
     colorSelector = new ColorSelector(50, 350, 350, 50);
     colorSelector->box(FL_BORDER_BOX);
 
@@ -85,10 +20,98 @@ Application::Application() {
     window->add(canvas);
     window->add(colorSelector);
 
-    ON_MOUSE_DOWN(canvas, Application::onCanvasMouseDown);
-    ON_DRAG(canvas, Application::onCanvasDrag);
-    ON_CHANGE(toolbar, Application::onToolbarChange);
-    ON_MOUSE_UP(canvas, Application::onCanvasMouseUp);
+    ON_MOUSE_DOWN(canvas,    Application::onCanvasMouseDown);
+    ON_DRAG(canvas,          Application::onCanvasDrag);
+    ON_CHANGE(toolbar,       Application::onToolbarChange);
+    ON_CHANGE(colorSelector, Application::onColorSelectorChange);
 
     window->show();
+}
+
+void Application::onCanvasMouseDown(bobcat::Widget* sender, float mx, float my) {
+    TOOL tool = toolbar->getTool();
+    Color color = colorSelector->getColor();
+
+    switch (tool) {
+        case PENCIL:
+            canvas->addPoint(mx, my, color.getR(), color.getG(), color.getB(), 7);
+            canvas->redraw();
+            break;
+        case ERASER: {
+            Shape* target = canvas->getSelectedShape(mx, my);
+            if (target) {
+                canvas->removeShape(target);
+                canvas->redraw();
+            }
+            break;
+        }
+        case RECTANGLE:
+            canvas->addRectangle(mx, my, color.getR(), color.getG(), color.getB());
+            canvas->redraw();
+            break;
+        case CIRCLE:
+            canvas->addCircle(mx, my, color.getR(), color.getG(), color.getB());
+            canvas->redraw();
+            break;
+        case TRIANGLE:
+            canvas->addTriangle(mx, my, color.getR(), color.getG(), color.getB());
+            canvas->redraw();
+            break;
+        case POLYGON:
+            canvas->addPolygon(mx, my, color.getR(), color.getG(), color.getB());
+            canvas->redraw();
+            break;
+        case MOUSE:
+            selectedShape = canvas->getSelectedShape(mx, my);
+            lastMouseX = mx;
+            lastMouseY = my;
+            break;
+        case FRONT:
+            selectedShape = canvas->getSelectedShape(mx, my);
+            if (selectedShape) {
+                canvas->bringToFront(selectedShape);
+                canvas->redraw();
+            }
+            break;
+        case BACK:
+            selectedShape = canvas->getSelectedShape(mx, my);
+            if (selectedShape) {
+                canvas->sendToBack(selectedShape);
+                canvas->redraw();
+            }
+            break;
+    }
+}
+
+void Application::onCanvasDrag(bobcat::Widget* sender, float mx, float my) {
+    if (toolbar->getTool() == MOUSE && selectedShape) {
+        float dx = mx - lastMouseX;
+        float dy = my - lastMouseY;
+        selectedShape->move(dx, dy);
+        canvas->redraw();
+        lastMouseX = mx;
+        lastMouseY = my;
+    }
+}
+
+void Application::onToolbarChange(bobcat::Widget* sender) {
+    ACTION action = toolbar->getAction();
+    if (action == CLEAR) {
+        canvas->clear();
+        canvas->redraw();
+    } else if (action == INCREASE && selectedShape) {
+        selectedShape->resize(1.1f, 1.1f);
+        canvas->redraw();
+    } else if (action == DECREASE && selectedShape) {
+        selectedShape->resize(0.9f, 0.9f);
+        canvas->redraw();
+    }
+}
+
+void Application::onColorSelectorChange(bobcat::Widget* sender) {
+    Color color = colorSelector->getColor();
+    if (selectedShape) {
+        selectedShape->setColor(color.getR(), color.getG(), color.getB());
+        canvas->redraw();
+    }
 }
