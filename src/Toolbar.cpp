@@ -107,19 +107,19 @@ ACTION Toolbar::getAction() const {
 
 }
 
-Toolbar::Toolbar(int x, int y, int w, int h) : Group(x, y, w, h) {
-    pencilButton = new Image(x, y, 40, 40, "./assets/pencil.png");
-    eraserButton = new Image(x, y + 40, 40, 40, "./assets/eraser.png");
-    circleButton = new Image(x, y + 80, 20, 20, "./assets/circle.png");
-    triangleButton = new Image(x + 20, y + 80, 20, 20, "./assets/triangle.png");
-    rectangleButton = new Image(x, y + 100, 20, 20, "./assets/rectangle.png");
-    polygonButton = new Image(x + 20, y + 100, 20, 20, "./assets/polygon.png");
-    frontButton = new Image(x, y + 120, 40, 40, "./assets/bring-to-front.png");
-    backButton = new Image(x, y + 160, 40, 40, "./assets/send-to-back.png");
-    clearButton = new Image(x, y + 200, 40, 40, "./assets/clear.png");
-    mouseButton = new Image(x, y + 240, 40, 40, "./assets/mouse.png");
-    sizeIncreaseButton = new Image(x, y + 280, 40, 40, "./assets/plus.png");
-    sizeDecreaseButton = new Image(x, y + 320, 40, 40, "./assets/minus.png");
+Toolbar::Toolbar(int x, int y, int w, int h) : Group(x, y, w, h) {      // Adjusted the buttons
+    pencilButton = new Image(x, y, 50, 50, "./assets/pencil.png");
+    eraserButton = new Image(x, y + 50, 50, 50, "./assets/eraser.png");
+    circleButton = new Image(x, y + 100, 25, 25, "./assets/circle.png");
+    triangleButton = new Image(x + 25, y + 100, 25, 25, "./assets/triangle.png");
+    rectangleButton = new Image(x, y + 125, 25, 25, "./assets/rectangle.png");
+    polygonButton = new Image(x + 25, y + 125, 25, 25, "./assets/polygon.png");
+    frontButton = new Image(x, y + 150, 50, 50, "./assets/bring-to-front.png");
+    backButton = new Image(x, y + 200, 50, 50, "./assets/send-to-back.png");
+    clearButton = new Image(x, y + 250, 50, 50, "./assets/clear.png");
+    mouseButton = new Image(x, y + 300, 50, 50, "./assets/mouse.png");
+    sizeIncreaseButton = new Image(x, y + 350, 50, 50, "./assets/plus.png");
+    sizeDecreaseButton = new Image(x, y + 400, 50, 50, "./assets/minus.png");
 
 
     tool = PENCIL;

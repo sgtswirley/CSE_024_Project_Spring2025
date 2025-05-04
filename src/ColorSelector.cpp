@@ -99,6 +99,15 @@ Color ColorSelector::getColor() const {
         return Color(148/255.0, 0/255.0, 211/255.0);
     }
     else if (color == CHANGE) {     // ADDED v
+        if (redInput->empty()){
+            redInput->value(0);
+        };
+        if (greenInput->empty()){
+            greenInput->value(0);
+        };
+        if (blueInput->empty()){
+            blueInput->value(0);
+        };
         int red = redInput->value();
         int green = greenInput->value();
         int blue = blueInput->value();
@@ -141,11 +150,11 @@ ColorSelector::ColorSelector(int x, int y, int w, int h) : Group(x, y, w, h) {
     indigoButton = new Button(x + 250, y + 50, 50, 50, "");
     violetButton = new Button(x + 300, y + 50, 50, 50, "");
 
-
+    
     inputButton = new Button (x + 300, y + 0, 50, 50);              // added
-    redInput = new IntInput(x + 0, y + 25, 100, 25, "RED");         // added
-    greenInput = new IntInput(x + 100, y + 25, 100, 25, "GREEN");   // added
-    blueInput = new IntInput(x + 200, y + 25, 100, 25, "BLUE");     // added
+    redInput = new IntInput(x + 0, y + 25, 100, 25, "INT RED");         // added
+    greenInput = new IntInput(x + 100, y + 25, 100, 25, "INT GREEN");   // added
+    blueInput = new IntInput(x + 200, y + 25, 100, 25, "INT BLUE");     // added
 
     color = RED;
 
@@ -164,9 +173,14 @@ ColorSelector::ColorSelector(int x, int y, int w, int h) : Group(x, y, w, h) {
     violetButton->color(fl_rgb_color(148, 0, 211));
     violetButton->labelcolor(FL_WHITE);
 
-
     inputButton->color(fl_rgb_color(255, 255, 255));    // added  v
     inputButton->label("COLOR\nSELECT");   
+    redInput->align(FL_ALIGN_TOP);
+    greenInput->align(FL_ALIGN_TOP);
+    blueInput->align(FL_ALIGN_TOP);
+    redInput->labelcolor(FL_RED);
+    greenInput->labelcolor(FL_GREEN);
+    blueInput->labelcolor(FL_BLUE);
     redInput->value(255);
     greenInput->value(255);
     blueInput->value(255);                              // added ^

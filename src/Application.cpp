@@ -13,9 +13,9 @@ Application::Application() {
     selectedShape = nullptr;
     lastMouseX = lastMouseY = 0;
 
-    toolbar = new Toolbar(0,   0,   50, 400);
-    canvas = new Canvas(50,  0,  350, 330);   
-    colorSelector = new ColorSelector(50, 330, 350, 100); 
+    toolbar = new Toolbar(0,   0,   50, 450);       // resized
+    canvas = new Canvas(50,  0,  350, 350);         // resized
+    colorSelector = new ColorSelector(50, 350, 350, 100); 
 
     colorSelector->box(FL_BORDER_BOX);
 
