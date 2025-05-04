@@ -1,3 +1,4 @@
+
 #ifndef APPLICATION_H
 #define APPLICATION_H
 
@@ -15,17 +16,19 @@ private:
     ColorSelector* colorSelector;
 
     Shape* selectedShape;
-    float lastMouseX;
-    float lastMouseY;
+    float lastMouseX, lastMouseY;
 
 public:
     Application();
 
-    // These are the callbacks you bind with ON_MOUSE_DOWN, etc.
-    void onCanvasMouseDown(bobcat::Widget* sender, float mx, float my);
-    void onCanvasDrag(bobcat::Widget* sender, float mx, float my);
-    void onToolbarChange(bobcat::Widget* sender);
-    void onColorSelectorChange(bobcat::Widget* sender);
+    
+    void onCanvasMouseDown  (bobcat::Widget* sender, float mx, float my);
+    void onCanvasDrag       (bobcat::Widget* sender, float mx, float my);
+    void onCanvasMouseUp    (bobcat::Widget* sender, float mx, float my);
+
+
+    void onToolbarChange        (bobcat::Widget* sender);
+    void onColorSelectorChange  (bobcat::Widget* sender);
 };
 
 #endif
